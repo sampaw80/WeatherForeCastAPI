@@ -1,24 +1,20 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using API.Data;
-using API.Entities;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class WeatherController : BaseApiController
+      public class SearchWeatherController : BaseApiController
     {
         private readonly IOptions<AppOptions> _options;
-        public WeatherController(IOptions<AppOptions> options)
+        public SearchWeatherController(IOptions<AppOptions> options)
         {
             _options = options;
         }
@@ -49,30 +45,30 @@ namespace API.Controllers
                     return BadRequest($"Error getting weather from OpenWeather: {httpRequestException.Message}");
                 }
 
-            } 
+            }
         }
+    }
 
-        public class AppOptions
-        {
-            public string OpenWeatherApiKey { get; set; }
-        }
-        public class OpenWeatherResponse
-        {
-            public string Name { get; set; }
+    public class AppOptions
+    {
+        public string OpenWeatherApiKey { get; set; }
+    }
+    public class OpenWeatherResponse
+    {
+        public string Name { get; set; }
 
-            public IEnumerable<WeatherDescription> Weather { get; set; }
+        public IEnumerable<WeatherDescription> Weather { get; set; }
 
-            public Main Main { get; set; }
-        }
+        public Main Main { get; set; }
+    }
 
-        public class WeatherDescription
-        {
-            public string Main { get; set; }
-            public string Description { get; set; }
-        }
-        public class Main
-        {
-            public string Temp { get; set; }
-        }
+    public class WeatherDescription
+    {
+        public string Main { get; set; }
+        public string Description { get; set; }
+    }
+    public class Main
+    {
+        public string Temp { get; set; }
     }
 }
