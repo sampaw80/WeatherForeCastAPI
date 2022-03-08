@@ -51,7 +51,7 @@ namespace API
 
             app.UseRouting();
 
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://weatherapp-client.azurewebsites.net/"));
 
             app.UseAuthentication();
             app.UseAuthorization();

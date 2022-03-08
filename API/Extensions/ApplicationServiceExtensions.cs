@@ -18,7 +18,7 @@ namespace API.Extensions
             //    options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             //});
             services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer("Data Source=tcp:weatherdbsvr.database.windows.net,1433;Initial Catalog=weatherdb;Persist Security Info=False;User ID=wije;Password=Abc_123+;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
             return services;
         }
     }
